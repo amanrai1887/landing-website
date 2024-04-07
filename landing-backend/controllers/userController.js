@@ -4,8 +4,8 @@ const models = require('../models');
 
 exports.signup = async (req, res) => {
     try {
-        const { name, email, phone, password } = req.body;
-
+        const { name, email, phone, password, password_confirmation } = req.body;
+        console.log(req.body)
         // Validate name
         if (!name || typeof name !== 'string') {
             return res.status(400).json({ message: 'Name is required and must be a string' });
@@ -28,6 +28,10 @@ exports.signup = async (req, res) => {
             return res.status(400).json({ message: 'Password must be at least 6 characters long' });
         }
 
+        if (!password !== password_confirmation) {
+            return res.status(400).json({ message: 'Password and confirm Password not matching, please send valid password' });
+        }
+
         // Check if user already exists based on email
         const existingUser = await models.user.findOne({ where: { email } });
         if (existingUser) {
@@ -40,7 +44,7 @@ exports.signup = async (req, res) => {
         // Create user
         const user = await models.user.create({ email, phone, name, password: hashedPassword });
 
-        res.status(201).json({ message: 'User created successfully', user });
+        res.status(201).json({ message: 'Signed up successfully', user });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -65,7 +69,7 @@ exports.login = async (req, res) => {
         // Find user by email
         const user = await models.user.findOne({ where: { email } });
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'Please send valid email or password' });
         }
 
         // Check if password is valid
