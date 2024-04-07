@@ -10,6 +10,9 @@
   justify-content: center;
   overflow: hidden;
   animation: slideIn 0.3s ease forwards;
+  overflow: scroll;
+  border-color: #000;
+  border-radius: 2px;
 }
 
 .popup-content {
@@ -23,6 +26,7 @@
   position: relative;
   color: #a9a9b6;
   border-radius: 2px;
+  border-color: #000;
 }
 
 @keyframes slideIn {

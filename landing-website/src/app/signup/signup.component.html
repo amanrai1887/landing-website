@@ -26,40 +26,70 @@
     <div class="modal-right">
       <div class="signupTab">
         <div class="h2">
-          <a class="loginBtn" style="color: #f6bb43" href="#loginForm">LOGIN</a>
+          <a
+            class="loginBtn"
+            style="color: #f6bb43"
+            (click)="toggleForm('login')"
+            >LOGIN</a
+          >
         </div>
         <span class="seperator" style="color: #f6bb43">|</span>
         <div class="h2">
-          <a class="singupBtn" style="color: #f6bb43" href="#signupForm"
+          <a
+            class="signupBtn"
+            style="color: #f6bb43"
+            (click)="toggleForm('signup')"
             >SIGNUP</a
           >
         </div>
       </div>
-      <div class="login-form" style="display: block">
-        <form method="post" id="loginForm" class="form-block center-block">
+      <div
+        class="login-form"
+        style="display: block"
+        *ngIf="activeForm === 'login'"
+      >
+        <form
+          method="post"
+          id="loginForm"
+          class="form-block center-block"
+          [formGroup]="loginForm"
+          (ngSubmit)="login()"
+        >
           <div class="form-group">
             <input
               type="email"
               class="form-control"
               name="email"
-              required=""
-              minlength="3"
               placeholder="Email"
               autocomplete="email"
+              formControlName="email"
             />
-            <span class="form-error"></span>
+            <span
+              class="form-error"
+              *ngIf="
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
+              "
+              >Please enter a valid email</span
+            >
           </div>
           <div class="form-group">
             <input
               type="password"
               class="form-control"
               name="password"
-              required=""
-              minlength="3"
               placeholder="Password"
               autocomplete="current-password"
+              formControlName="password"
             />
-            <span class="form-error"></span>
+            <span
+              class="form-error"
+              *ngIf="
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+              "
+              >Please enter a valid password</span
+            >
           </div>
           <div class="form-group">
             <label>
@@ -78,10 +108,12 @@
               class="btn btn-block btn-info btn-raised"
               name="submit"
               value="LOGIN"
+              [disabled]="loginForm.invalid"
             />
             <span class="loader" style="display: none"></span>
           </div>
-          <p class="message"></p>
+          <p class="message">{{ loginSuccessMessage }}</p>
+          <p class="error-message">{{ loginErrorMessage }}</p>
         </form>
         <hr style="margin: 25px 0; border-color: #fff" />
         <a
@@ -106,81 +138,122 @@
           Login with Facebook
         </a>
       </div>
-      <div class="signup-form" style="display: none">
-        <form method="post" action="" id="signupForm" class="center-block">
+      <div class="signup-form" *ngIf="activeForm === 'signup'">
+        <form
+          method="post"
+          action=""
+          class="center-block"
+          [formGroup]="registerForm"
+          (ngSubmit)="signup()"
+        >
           <div class="form-group">
             <input
               type="text"
               class="form-control"
               name="name"
-              minlength="2"
-              maxlength="30"
-              required=""
               placeholder="Full Name"
-              pattern="^[A-Za-z]{2,}((\s[A-Za-z.]+)+)?[\s]*$"
-              title="Please enter a valid name"
-              autocomplete="name"
+              formControlName="name"
             />
-            <span class="form-error"></span>
+            <span
+              class="form-error"
+              *ngIf="
+                registerForm.get('name')?.invalid &&
+                registerForm.get('name')?.touched
+              "
+              >Please enter a valid name</span
+            >
           </div>
           <div class="form-group">
             <input
               type="email"
               class="form-control"
               name="email"
-              required=""
               placeholder="Email"
               autocomplete="email"
+              formControlName="email"
             />
-            <span class="form-error"></span>
+            <span
+              class="form-error"
+              *ngIf="
+                  (registerForm.get('email')?.invalid &&
+                    registerForm.get('email')?.touched) ||
+                  (registerForm.get('email')?.errors?.['required'] &&
+                    registerForm.get('email')?.touched)
+                "
+              >Please enter a valid email</span
+            >
           </div>
           <div class="form-group">
             <input
               type="text"
               class="form-control"
               name="mobile"
-              max-length="10"
-              maxlength="10"
               placeholder="Mobile Number"
-              pattern="[789][0-9]{9}"
-              title="Please enter a valid mobile number"
-              autocomplete="off"
+              formControlName="mobile"
             />
-            <span class="form-error"></span>
+            <span
+              class="form-error"
+              *ngIf="
+                  (registerForm.get('mobile')?.invalid &&
+                    registerForm.get('mobile')?.touched) ||
+                  (registerForm.get('mobile')?.errors?.['required'] &&
+                    registerForm.get('mobile')?.touched)
+                "
+              >Please enter a valid mobile number</span
+            >
           </div>
           <div class="form-group">
             <input
               type="password"
               class="form-control"
               name="password"
-              required=""
-              minlength="6"
               placeholder="Password"
               autocomplete="new-password"
+              formControlName="password"
             />
-            <span class="form-error"></span>
+            <span
+              class="form-error"
+              *ngIf="
+                  (registerForm.get('password')?.invalid &&
+                    registerForm.get('password')?.touched) ||
+                  (registerForm.get('password')?.errors?.['required'] &&
+                    registerForm.get('password')?.touched)
+                "
+              >Please enter a valid password</span
+            >
           </div>
           <div class="form-group">
             <input
               type="password"
               class="form-control"
               name="password_confirmation"
-              required=""
               placeholder="Confirm Password"
               autocomplete="current-password"
+              formControlName="password_confirmation"
             />
-            <span class="form-error"></span>
+            <span
+              class="form-error"
+              *ngIf="
+                  (registerForm.get('password_confirmation')?.invalid &&
+                    registerForm.get('password_confirmation')?.touched) ||
+                  (registerForm.get('password_confirmation')?.errors?.['required'] &&
+                    registerForm.get('password_confirmation')?.touched)
+                "
+              >Please confirm your password</span
+            >
           </div>
-          <div class="form-group form-loader">
+          <div class="form-group form-loader pointer">
             <input
               type="submit"
               class="btn btn-info btn-block btn-raised"
               name="submit"
               value="REGISTER"
+              [disabled]="registerForm.invalid"
             />
             <span class="loader" style="display: none"></span>
           </div>
-          <p class="message"></p>
+          <p class="message">{{ signupSuccessMessage }}</p>
+          <p class="error-message">{{ signupErrorMessage }}</p>
         </form>
       </div>
     </div>
