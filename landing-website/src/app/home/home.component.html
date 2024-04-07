@@ -142,10 +142,11 @@
           </span>
           <span
             id="js_logout_link"
-            onclick="modalHandler.openLoginModal();"
             class="btn btn-big btn-primary"
+            (click)="redirectToSignup()"
             >Login</span
           >
+
           <span id="header_country" class="btn btn-big">
             <span>India</span>
             <img
@@ -733,9 +734,7 @@
           <div class="top_box_right">
             <div class="slider_right_head">
               <h3>Featured Stores</h3>
-              <span
-                ><a href="" title="All Stores">View All Stores</a></span
-              >
+              <span><a href="" title="All Stores">View All Stores</a></span>
             </div>
             <section class="featured-stores">
               <div class="store-slider slider">
@@ -1061,3 +1060,5 @@
     </div>
   </body>
 </html>
+
+<app-signup *ngIf="isLoginPopupVisible"></app-signup>

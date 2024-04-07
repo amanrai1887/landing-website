@@ -1,0 +1,188 @@
+<div class="login-popup">
+  <div class="popup-content">
+    <a
+      href="#"
+      onclick="return preventRedirection()"
+      class="btn-close"
+      aria-hidden="true"
+      >×</a
+    >
+    <div
+      class="modal-left"
+      id="modal-bg-container"
+      data-style="background-image: url(https://cdn.zoutons.com/images/common/login_bg.png);"
+      style="
+        background-image: url('https://cdn.zoutons.com/images/common/login_bg.png');
+      "
+    >
+      <h3>Why Sign up?</h3>
+      <ul>
+        <li>Exclusive deals</li>
+        <li>More Savings</li>
+        <li>Over 50 Stores</li>
+        <li>Over 100 Categories</li>
+      </ul>
+    </div>
+    <div class="modal-right">
+      <div class="signupTab">
+        <div class="h2">
+          <a class="loginBtn" style="color: #f6bb43" href="#loginForm">LOGIN</a>
+        </div>
+        <span class="seperator" style="color: #f6bb43">|</span>
+        <div class="h2">
+          <a class="singupBtn" style="color: #f6bb43" href="#signupForm"
+            >SIGNUP</a
+          >
+        </div>
+      </div>
+      <div class="login-form" style="display: block">
+        <form method="post" id="loginForm" class="form-block center-block">
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              required=""
+              minlength="3"
+              placeholder="Email"
+              autocomplete="email"
+            />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              required=""
+              minlength="3"
+              placeholder="Password"
+              autocomplete="current-password"
+            />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="checkbox" name="remember" /> Remember me
+            </label>
+            <span
+              class="right"
+              style="color: #a9a9b6; cursor: pointer"
+              onclick="passwordResetHandler.showForm()"
+              >Forgot Your Password?</span
+            >
+          </div>
+          <div class="form-group form-loader">
+            <input
+              type="submit"
+              class="btn btn-block btn-info btn-raised"
+              name="submit"
+              value="LOGIN"
+            />
+            <span class="loader" style="display: none"></span>
+          </div>
+          <p class="message"></p>
+        </form>
+        <hr style="margin: 25px 0; border-color: #fff" />
+        <a
+          href="https://appprod.zoutons.com/login/google"
+          class="btn btn-raised"
+          style="color: #898a90; width: 100%; margin-bottom: 10px"
+        >
+          <svg width="20px" height="20px" style="vertical-align: bottom">
+            <use xlink:href="#icon-google"></use>
+          </svg>
+          Login with Google
+        </a>
+        <br />
+        <a
+          href="https://appprod.zoutons.com/login/facebook"
+          class="btn btn-raised"
+          style="background: #3b5998; color: #fff; width: 100%"
+        >
+          <svg width="20px" height="20px" style="vertical-align: bottom">
+            <use xlink:href="#icon-facebook-logo"></use>
+          </svg>
+          Login with Facebook
+        </a>
+      </div>
+      <div class="signup-form" style="display: none">
+        <form method="post" action="" id="signupForm" class="center-block">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              minlength="2"
+              maxlength="30"
+              required=""
+              placeholder="Full Name"
+              pattern="^[A-Za-z]{2,}((\s[A-Za-z.]+)+)?[\s]*$"
+              title="Please enter a valid name"
+              autocomplete="name"
+            />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              required=""
+              placeholder="Email"
+              autocomplete="email"
+            />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              name="mobile"
+              max-length="10"
+              maxlength="10"
+              placeholder="Mobile Number"
+              pattern="[789][0-9]{9}"
+              title="Please enter a valid mobile number"
+              autocomplete="off"
+            />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              required=""
+              minlength="6"
+              placeholder="Password"
+              autocomplete="new-password"
+            />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              name="password_confirmation"
+              required=""
+              placeholder="Confirm Password"
+              autocomplete="current-password"
+            />
+            <span class="form-error"></span>
+          </div>
+          <div class="form-group form-loader">
+            <input
+              type="submit"
+              class="btn btn-info btn-block btn-raised"
+              name="submit"
+              value="REGISTER"
+            />
+            <span class="loader" style="display: none"></span>
+          </div>
+          <p class="message"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
